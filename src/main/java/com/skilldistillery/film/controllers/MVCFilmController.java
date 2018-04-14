@@ -21,45 +21,45 @@ public class MVCFilmController {
 		this.dao = dao;
 	}
 
-	@RequestMapping(path = "AddFilm.do", params = "name", method = RequestMethod.GET)
-	public ModelAndView getStateByName(Film film) {
+	@RequestMapping(path = "AddFilm.do", params = "name", method = RequestMethod.POST)
+	public ModelAndView addFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.addFilm(film);
 		mv.addObject("film", f);
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
 
-	@RequestMapping(path = "DeleteFilm.do", params = "delete", method = RequestMethod.GET)
-	public ModelAndView getStateByAbbreviation(int film) {
+	@RequestMapping(path = "DeleteFilm.do", params = "delete", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(int film) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.deleteFilm(film);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "FilmById.do", params = "FilmById", method = RequestMethod.GET)
+	@RequestMapping(path = "FilmById.do", params = "FilmById", method = RequestMethod.POST)
 	public ModelAndView getFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.getFilmById(filmId);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "UpdateFilm.do", params = "FilmById", method = RequestMethod.GET)
+	@RequestMapping(path = "UpdateFilm.do", params = "FilmById", method = RequestMethod.POST)
 	public ModelAndView updateFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.getFilmById(filmId);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "FindByKeyword.do", params = "name", method = RequestMethod.GET)
-	public ModelAndView updateFilm(String search) {
+	@RequestMapping(path = "FindByKeyword.do", params = "name", method = RequestMethod.POST)
+	public ModelAndView findFilmByKeyword(String search) {
 		ModelAndView mv = new ModelAndView();
 		List<Film> f = dao.getFilmBySearchTerm(search);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/result.jsp"); //dont have a jsp for this yet
 		return mv;
 	}
 }
