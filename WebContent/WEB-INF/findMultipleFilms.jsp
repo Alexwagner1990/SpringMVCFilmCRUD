@@ -31,32 +31,38 @@
 					<li>Film Length: ${film.length }</li>
 					<li>Film Replacement Cost: ${film.replacement_cost }</li>
 					<li>Film Rating: ${film.rating }</li>
-					<li>Film Special Features: ${film.special_features }</li>
-				</ul>
-				</c:forEach>
-
-				<br>
+					<li>Film Special Features: ${film.special_features }</li>  					<li><form action="FilmById.do" name= "${film.id}" method="POST">
+<!-- 					<li><input type="submit" value="More Details And Actions"/>
+					</form></li> -->
+				</ul> 
 				<h2>Update This Film!</h2>
 				<form action="update.do" name="update">
-					<input label="Title" type="text" value="${film.title }"><br>
-					<input label="Description" type="text" value="${film.description }"><br>
-					<input label="Release Year" type="text"
-						value="${film.release_year }"><br> <input
+					Title<input label="Title" type="text" value="${film.title }"><br>
+					Description<input label="Description" type="text" value="${film.description }"><br>
+					Release Year<input label="Release Year" type="text"
+						value="${film.release_year }"><br> 
+					Language ID<input
 						label="Language ID" type="text" value="${film.language_id }"><br>
-					<input label="Rental Duration" type="text"
-						value="${film.rental_duration }"><br> <input
+					Rental Duration<input label="Rental Duration" type="text"
+						value="${film.rental_duration }"><br> 
+					Replacement Rate	<input
 						label="Rental Rate" type="text" value="${film.rental_rate }"><br>
-					<input label="Replacement Cost" type="text"
-						value="${film.replacement_cost }"><br> <input
+					Replacement Cost<input label="Replacement Cost" type="text"
+						value="${film.replacement_cost }"><br> 
+					Rating <input
 						label="Rating" type="text" value="${film.rating }"><br>
-					<input label="Special Features" type="text"
+					Special Features<input label="Special Features" type="text"
 						value="${film.special_features }"><br> <input
 						type="submit" value="UPDATE"><br>
 				</form>
 				<h2>Delete This Film!</h2>
-			<form action="delete.do" name="delete">
-			<input type="submit" value="DELETE">
+			<form action="DeleteFilm.do" name="delete">
+			<input type="submit" name="${film.id }" value="DELETE">
 			</form>
+				</c:forEach>
+
+				<br>
+				
 			</c:when>
 			<c:otherwise>
 				<h2>No Film Found, Try Again!</h2>
