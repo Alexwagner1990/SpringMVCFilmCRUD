@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,12 +55,12 @@ public class MVCFilmController {
 		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "FindByKeyword.do", params="keyword", method = RequestMethod.POST)
-	public ModelAndView findFilmByKeyword(String search) {
+	@RequestMapping(path = "FindbyKeyword.do", method = RequestMethod.POST)
+	public ModelAndView findFilmByKeyword(@RequestParam(name="keyword") String search) {
 		ModelAndView mv = new ModelAndView();
 		List<Film> f = dao.getFilmBySearchTerm(search);
-		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/findAFilm.jsp"); 
+		mv.addObject("films", f);		
+		mv.setViewName("WEB-INF/findMultipleFilms.jsp"); 
 		return mv;
 	}
 }
