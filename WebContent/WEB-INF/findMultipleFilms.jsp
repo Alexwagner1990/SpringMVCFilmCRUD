@@ -36,7 +36,8 @@
 					</form></li> -->
 				</ul> 
 				<h2>Update This Film!</h2>
-				<form action="update.do" name="update">
+				<form action="UpdateFilm.do" name="update">
+				<input type="hidden" value="${film.id }">
 					Title<input label="Title" type="text" value="${film.title }"><br>
 					Description<input label="Description" type="text" value="${film.description }"><br>
 					Release Year<input label="Release Year" type="text"
@@ -56,8 +57,9 @@
 						type="submit" value="UPDATE"><br>
 				</form>
 				<h2>Delete This Film!</h2>
-			<form action="DeleteFilm.do" name="delete">
-			<input type="submit" name="${film.id }" value="DELETE">
+			<form action="DeleteFilm.do" name="delete" method="POST">
+			<input type="hidden" value="${film.id }">
+			<input type="submit" value="DELETE">
 			</form>
 				</c:forEach>
 

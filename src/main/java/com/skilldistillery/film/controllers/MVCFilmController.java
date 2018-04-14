@@ -47,10 +47,11 @@ public class MVCFilmController {
 		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "UpdateFilm.do", params = "FilmById", method = RequestMethod.POST)
-	public ModelAndView updateFilm(int filmId) {
+	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.POST)
+	public ModelAndView updateFilm(Film film) {
+		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
-		Film f = dao.getFilmById(filmId);
+		Film f = dao.updateFilm(film);
 		mv.addObject("film", f);		
 		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;

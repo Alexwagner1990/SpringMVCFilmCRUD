@@ -22,7 +22,7 @@
 				<h2>Film Found!</h2>
 				<ul>
 					<li>Film ID: ${film.id }</li>
-					<li>Film Title:</li>
+					<li>Film Title: ${film.title }</li>
 					<li>Film Description: ${film.description }</li>
 					<li>Film Release Year: ${film.release_year }</li>
 					<li>Film Language ID: ${film.language_id }</li>
@@ -35,7 +35,8 @@
 				</ul>
 				<br>
 				<h2>Update This Film!</h2>
-				<form action="UpdateFilm.do" name="update">
+				<form action="UpdateFilm.do" name="update" method="POST">
+				<input type="hidden" value="${film.id }">
 				<table>
 					<tr><td>Title</td> <td><input label="Title" type="text" value="${film.title }"></td></tr>
 					<tr><td>Description</td> <td><input label="Description" type="text" value="${film.description }"></td></tr>
@@ -61,7 +62,8 @@
 						<input type="submit" value="UPDATE"><br>	
 				</form>
 				<h2>Delete This Film!</h2>
-			<form action="DeleteFilm.do" name="delete">
+			<form action="DeleteFilm.do" name="delete" method="POST">
+			<input type="hidden" value="${film.id }">
 			<input type="submit" value="DELETE">
 			</form>
 			</c:when>
