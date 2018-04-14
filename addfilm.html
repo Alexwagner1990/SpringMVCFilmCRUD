@@ -2,44 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>New State</title>
+    <title>Add Film</title>
   </head>
   <body>
     <form action="AddFilm.do" method="POST">
-      <label for="abbreviation">*Title:</label>
-      <input type="text" name="abbreviation" value="PR">
+      <label for="title">*Title:</label>
+      <input type="text" name="title" value="">
       <br>
-      <label for="name">Description:</label>
-      <input type="text" name="name" value="Puerto Rico">
+      <label for="description">Description:</label>
+      <input type="text" name="description" value="">
       <br>
-      <label for="capital">Release Year:</label>
-      <input type="text" name="capital" value="San Juan">
+      <label for="release_year">Release Year:</label>
+      <input type="text" name="release_year" value="">
       <br>
-      <label for="abbreviation">Language Id:</label>
-       <select name="language">
-    	<option value="volvo">Volvo</option>
-    	<option value="saab">Saab</option>
-    	<option value="fiat">Fiat</option>
-    	<option value="audi">Audi</option>
-  </select>
+      <label for="language_id">Language Id:</label>
+       <select name="language_id">
+    	<option value="english">1 Volvo</option>
+    	<option value="italian">2 Italian</option>
+    	<option value="japanese">3 Saab</option>
+    	<option value="mandarin">4 Fiat</option>
+    	<option value="french">5 Audi</option>
+    	<option value="german">6 Fiat</option>
+  		</select>
+      <input type="text" name="language_id" value="">
       <br>
-      <label for="name">Rental Duration:</label>
-      <input type="text" name="name" value="Puerto Rico">
+      <label for="rental_duration">Rental Duration:</label>
+      <input type="text" name="rental_duration" value="">
       <br>
-      <label for="capital">Rental Rate:</label>
-      <input type="text" name="capital" value="San Juan">
+      <label for="rental_rate">Rental Rate:</label>
+      <input type="text" name="rental_rate" value="">
       <br>
-      <label for="abbreviation">Length:</label>
-      <input type="text" name="abbreviation" value="PR">
+      <label for="length">Length:</label>
+      <input type="text" name="length" value="">
       <br>
-      <label for="name">Replacement Cost:</label>
-      <input type="text" name="name" value="Puerto Rico">
+      <label for="replacement_cost">Replacement Cost:</label>
+      <input type="text" name="replacement_cost" value="">
       <br>
-      <label for="capital">Rating:</label>
-      <input type="text" name="capital" value="San Juan">
+      <label for="rating">Rating:</label>
+      <input type="text" name="rating" value="">
       <br>
-      <label for="capital">Special Features:</label>
-      <input type="text" name="capital" value="San Juan">
+      <label for="pecial_features">Special Features:</label>
+      <input type="text" name="special_features" value="">
       <br>
       <input type="submit" value="Add Film">
     </form>
