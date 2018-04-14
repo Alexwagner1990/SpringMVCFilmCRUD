@@ -54,12 +54,12 @@ public class MVCFilmController {
 		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "FindByKeyword.do", params = "name", method = RequestMethod.POST)
+	@RequestMapping(path = "FindByKeyword.do", params="keyword", method = RequestMethod.POST)
 	public ModelAndView findFilmByKeyword(String search) {
 		ModelAndView mv = new ModelAndView();
 		List<Film> f = dao.getFilmBySearchTerm(search);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/result.jsp"); //dont have a jsp for this yet
+		mv.setViewName("WEB-INF/findAFilm.jsp"); 
 		return mv;
 	}
 }

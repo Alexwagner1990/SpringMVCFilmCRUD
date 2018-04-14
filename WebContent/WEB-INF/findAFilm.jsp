@@ -35,7 +35,7 @@
 				</ul>
 				<br>
 				<h2>Update This Film!</h2>
-				<form action="update.do" name="update">
+				<form action="UpdateFilm.do" name="update">
 				<table>
 					<tr><td>Title</td> <td><input label="Title" type="text" value="${film.title }"></td></tr>
 					<tr><td>Description</td> <td><input label="Description" type="text" value="${film.description }"></td></tr>
@@ -61,7 +61,7 @@
 						<input type="submit" value="UPDATE"><br>	
 				</form>
 				<h2>Delete This Film!</h2>
-			<form action="delete.do" name="delete">
+			<form action="DeleteFilm.do" name="delete">
 			<input type="submit" value="DELETE">
 			</form>
 			</c:when>
