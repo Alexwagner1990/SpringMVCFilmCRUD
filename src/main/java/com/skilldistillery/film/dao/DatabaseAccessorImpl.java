@@ -244,10 +244,10 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt.setString(10, film.getSpecial_features());
 			int success = stmt.executeUpdate();
 			if (success == 1) {
-				//ResultSet rs = stmt.getGeneratedKeys();
-				String sql2 = "select last_insert_id()";
-				PreparedStatement stmt2 = conn.prepareStatement(sql2);
-				ResultSet rs = stmt.executeQuery();
+				ResultSet rs = stmt.getGeneratedKeys();
+//				String sql2 = "select last_insert_id()";
+//				PreparedStatement stmt2 = conn.prepareStatement(sql2);
+//				ResultSet rs = stmt.executeQuery();
 				film.setId(rs.getInt(1));
 				conn.commit();
 				conn.close();

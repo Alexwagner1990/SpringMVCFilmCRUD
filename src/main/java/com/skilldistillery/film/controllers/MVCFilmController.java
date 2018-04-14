@@ -24,6 +24,7 @@ public class MVCFilmController {
 
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film) {
+//		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.addFilm(film);
 		mv.addObject("film", f);
@@ -36,7 +37,7 @@ public class MVCFilmController {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.deleteFilm(film);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/findAFilm.jsp");
+		mv.setViewName("WEB-INF/delete.jsp");
 		return mv;
 	}
 	@RequestMapping(path = "FilmById.do", params = "filmId", method = RequestMethod.POST)
@@ -54,7 +55,7 @@ public class MVCFilmController {
 		Film f = dao.updateFilm(film);
 		System.out.println(f);
 		mv.addObject("film", f);		
-		mv.setViewName("WEB-INF/findAFilm.jsp");
+		mv.setViewName("WEB-INF/update.jsp");
 		return mv;
 	}
 	@RequestMapping(path = "FindbyKeyword.do", method = RequestMethod.POST)
