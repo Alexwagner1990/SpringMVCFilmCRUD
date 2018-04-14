@@ -21,7 +21,7 @@ public class MVCFilmController {
 		this.dao = dao;
 	}
 
-	@RequestMapping(path = "AddFilm.do", params = "name", method = RequestMethod.POST)
+	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.addFilm(film);

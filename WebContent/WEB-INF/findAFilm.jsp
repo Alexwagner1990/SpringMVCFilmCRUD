@@ -41,8 +41,44 @@
 					<tr><td>Release Year</td> <td><input label="Release Year" type="text"
 						value="${film.release_year }"></td></tr> 
 					<tr><td>Language ID</td><td>
-					<input
-						label="Language ID" type="text" value="${film.language_id }">
+					<select name="Language_ID">
+					<c:if test="${film.language_id==1 }">
+					<option value='1' selected/>1
+					</c:if>
+					<c:if test="${film.language_id!=1 }">
+					<option value='1'/>1
+					</c:if>
+					<c:if test="${film.language_id==2 }">
+					<option value='2' selected/>2
+					</c:if>
+					<c:if test="${film.language_id!=2 }">
+					<option value='2'/>2
+					</c:if>
+					<c:if test="${film.language_id==3 }">
+					<option value='3' selected/>3
+					</c:if>
+					<c:if test="${film.language_id!=3 }">
+					<option value='3'/>3
+					</c:if>
+					<c:if test="${film.language_id==4 }">
+					<option value='4' selected/>4
+					</c:if>
+					<c:if test="${film.language_id!=4 }">
+					<option value='4'/>4
+					</c:if>
+					<c:if test="${film.language_id==5 }">
+					<option value='5' selected/>5
+					</c:if>
+					<c:if test="${film.language_id!=5 }">
+					<option value='5'/>5
+					</c:if>
+					<c:if test="${film.language_id==6 }">
+					<option value='6' selected/>6
+					</c:if>
+					<c:if test="${film.language_id!=6 }">
+					<option value='6'/>6
+					</c:if>
+					</select>
 						</td></tr>
 					<tr><td>Rental Duration</td> <td><input label="Rental Duration" type="text"
 						value="${film.rental_duration }"></td></tr> 
