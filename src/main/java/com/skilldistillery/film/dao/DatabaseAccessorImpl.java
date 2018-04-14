@@ -159,7 +159,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 		if (filmWithoutLanguage == null) {
 			return null;
 		}
-		int languageId = filmWithoutLanguage.getLanguageId();
+		int languageId = filmWithoutLanguage.getLanguage_id();
 		
 		ResultSet rs;
 		Connection conn;
@@ -172,7 +172,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				String languageName = rs.getString(2);
-				filmWithoutLanguage.setLanguageName(languageName);
 				rs.close();
 				conn.close();
 				stmt.close();
@@ -187,7 +186,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}
-		return null;
 	}
 
 	@Override
@@ -216,6 +214,126 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				return null;
 			}
 		} catch (SQLException e) {
+			System.out.println("Database problem. Dunno what to tell ya.");
+			return null;
+		}
+	}
+
+	@Override
+	public Film addFilm(Film film) {
+		Connection conn;
+		PreparedStatement stmt;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
+			String sql = "insert into film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) values (?,?,?,?,?,?,?,?,?,?)";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getRelease_year());
+			stmt.setInt(4, film.getLanguage_id());
+			stmt.setInt(5, film.getRental_duration());
+			stmt.setInt(6, film.getRental_rate());
+			stmt.setInt(7, film.getLength());
+			stmt.setInt(8, film.getReplacement_cost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecial_features());
+			int success = stmt.executeUpdate();
+			if (success == 1) {
+				String sql2 = "select last_insert_id";
+				PreparedStatement stmt2 = conn.prepareStatement(sql2);
+				ResultSet rs = stmt.executeQuery();
+				film.setId(rs.getInt(1));
+				conn.commit();
+				conn.close();
+				stmt.close();
+				return film;
+			} else {
+				conn.commit();
+				conn.close();
+				stmt.close();
+				return null;
+			}
+		} 
+		catch (SQLException e) {
+			System.out.println("Database problem. Dunno what to tell ya.");
+			return null;
+		}
+	}
+
+	@Override
+	public Film deleteFilm(int filmId) {
+		Connection conn;
+		PreparedStatement stmt;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
+			String sql = "delete from film where id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			int success = stmt.executeUpdate();
+			if (success == 1) {
+				String sql2 = "select last_insert_id";
+				PreparedStatement stmt2 = conn.prepareStatement(sql2);
+				ResultSet rs = stmt.executeQuery();
+				DatabaseAccessorImpl findFilm = new DatabaseAccessorImpl();
+				Film f = findFilm.getFilmById(rs.getInt(1));
+				conn.commit();
+				conn.close();
+				stmt.close();
+				return f;
+			} else {
+				conn.commit();
+				conn.close();
+				stmt.close();
+				return null;
+			}
+		} 
+		catch (SQLException e) {
+			System.out.println("Database problem. Dunno what to tell ya.");
+			return null;
+		}
+	}
+
+	@Override
+	public Film updateFilm(Film film) {
+		Connection conn;
+		PreparedStatement stmt;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
+			String sql = "update film set (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) = (?,?,?,?,?,?,?,?,?,?) where id=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getRelease_year());
+			stmt.setInt(4, film.getLanguage_id());
+			stmt.setInt(5, film.getRental_duration());
+			stmt.setInt(6, film.getRental_rate());
+			stmt.setInt(7, film.getLength());
+			stmt.setInt(8, film.getReplacement_cost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecial_features());
+			stmt.setInt(11, film.getId());
+			int success = stmt.executeUpdate();
+			if (success == 1) {
+				String sql2 = "select last_insert_id";
+				PreparedStatement stmt2 = conn.prepareStatement(sql2);
+				ResultSet rs = stmt.executeQuery();
+				DatabaseAccessorImpl findFilm = new DatabaseAccessorImpl();
+				Film f = findFilm.getFilmById(rs.getInt(1));
+				conn.commit();
+				conn.close();
+				stmt.close();
+				return f;
+			} else {
+				conn.commit();
+				conn.close();
+				stmt.close();
+				return null;
+			}
+		} 
+		catch (SQLException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}

@@ -13,4 +13,7 @@ public interface DatabaseAccessorInterface {
 	  public List<Film> getFilmBySearchTerm(String search);
 	  public Film getFilmWithLanguageName(Film filmWithoutLanguage);
 	  public FilmCategory getFilmCategory(Film filmWithNoDetails);
+	  public Film addFilm(Film film);
+	  public Film deleteFilm(int film);
+	  public Film updateFilm(Film film);
 }
