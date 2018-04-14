@@ -267,7 +267,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 	}
 
 	@Override
-	public Film deleteFilm(int filmId) {
+	public boolean deleteFilm(int filmId) {
 		Connection conn;
 		PreparedStatement stmt;
 		try {
@@ -278,25 +278,20 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt.setInt(1, filmId);
 			int success = stmt.executeUpdate();
 			if (success == 1) {
-				String sql2 = "select last_insert_id";
-				PreparedStatement stmt2 = conn.prepareStatement(sql2);
-				ResultSet rs = stmt.executeQuery();
-				DatabaseAccessorImpl findFilm = new DatabaseAccessorImpl();
-				Film f = findFilm.getFilmById(rs.getInt(1));
 				conn.commit();
 				conn.close();
 				stmt.close();
-				return f;
+				return true;
 			} else {
 				conn.commit();
 				conn.close();
 				stmt.close();
-				return null;
+				return false;
 			}
 		} 
-		catch (SQLException | ClassNotFoundException e) {
+		catch (SQLException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
-			return null;
+			return false;
 		}
 	}
 

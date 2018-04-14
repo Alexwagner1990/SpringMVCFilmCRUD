@@ -18,10 +18,10 @@
 	<div class="container">
 
 		<c:choose>
-			<c:when test="${empty film}">
+			<c:when test="${film}">
 				<h2>Film Deleted!</h2>
 			</c:when>
-			<c:when test="${not empty film}">
+			<c:when test="${!film}">
 				<h2>Film NOT Deleted!</h2>
 			</c:when>
 			

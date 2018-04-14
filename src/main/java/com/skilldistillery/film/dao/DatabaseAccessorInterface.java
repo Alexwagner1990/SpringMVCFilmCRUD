@@ -14,6 +14,6 @@ public interface DatabaseAccessorInterface {
 	  public Film getFilmWithLanguageName(Film filmWithoutLanguage);
 	  public FilmCategory getFilmCategory(Film filmWithNoDetails);
 	  public Film addFilm(Film film);
-	  public Film deleteFilm(int film);
+	  public boolean deleteFilm(int film);
 	  public Film updateFilm(Film film);
 }
