@@ -19,13 +19,17 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 	private static final String user = "student";
 	private static final String pass = "student";
 	
+	public DatabaseAccessorImpl() throws ClassNotFoundException{
+		Class.forName("com.mysql.jdbc.Driver");
+	}
+	
 	@Override
 	public Film getFilmById(int filmId) {
 			ResultSet rs;
 			Connection conn;
 			PreparedStatement stmt;
-			DatabaseAccessorImpl castGetter = new DatabaseAccessorImpl();
 			try {
+				DatabaseAccessorImpl castGetter = new DatabaseAccessorImpl();
 				conn = DriverManager.getConnection(URL, user, pass);
 				String sql = "select id, title, description, release_year, language_id, rental_duration, "
 						+ "rental_rate, length, replacement_cost, rating, special_features from film where id = ?";
@@ -34,7 +38,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				rs = stmt.executeQuery();
 				if (rs.next()) {
 					Film f = new Film(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
-							rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10),
+							rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getString(10),
 							rs.getString(11), castGetter.getActorsByFilmId(filmId));
 					rs.close();
 					conn.close();
@@ -47,8 +51,9 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 					stmt.close();
 					return null;
 				}
-			} catch (SQLException e) {
+			} catch (SQLException | ClassNotFoundException e) {
 				System.out.println("Database problem. Dunno what to tell ya.");
+				e.printStackTrace();
 				return null;
 			}
 	}
@@ -121,9 +126,9 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 		ResultSet rs;
 		Connection conn;
 		PreparedStatement stmt;
-		DatabaseAccessorImpl castGetter = new DatabaseAccessorImpl();
 		List<Film> foundFilms = new ArrayList<>();
 		try {
+			DatabaseAccessorImpl castGetter = new DatabaseAccessorImpl();
 			conn = DriverManager.getConnection(URL, user, pass);
 			String sql = "select id, title, description, release_year, language_id, rental_duration, "
 					+ "rental_rate, length, replacement_cost, rating, special_features from film where title like ? or description like ?";
@@ -146,7 +151,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				return null;
 			}
 			return foundFilms;
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}
@@ -287,7 +292,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				return null;
 			}
 		} 
-		catch (SQLException e) {
+		catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}
@@ -331,7 +336,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				return null;
 			}
 		} 
-		catch (SQLException e) {
+		catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}

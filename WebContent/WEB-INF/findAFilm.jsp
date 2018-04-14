@@ -17,7 +17,7 @@
 	<div class="container">
 
 		<c:choose>
-			<c:when test="${film not null}">
+			<c:when test="${not empty film}">
 				<h2>Film Found!</h2>
 				<ul>
 					<li>Film ID: ${film.id }</li>

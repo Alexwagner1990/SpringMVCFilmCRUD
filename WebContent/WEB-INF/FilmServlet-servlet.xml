@@ -10,7 +10,7 @@
 
 <context:component-scan base-package="com.skilldistillery.film.controllers" />
 <mvc:annotation-driven/>
-<bean id="dao" class="com.skilldistillery.film.dao.DatabaseAccessorInterface"/>
+<bean id="dao" class="com.skilldistillery.film.dao.DatabaseAccessorImpl"/>
 
 
 </beans>
