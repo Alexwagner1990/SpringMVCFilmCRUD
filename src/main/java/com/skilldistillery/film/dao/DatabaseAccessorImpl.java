@@ -34,7 +34,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				rs = stmt.executeQuery();
 				if (rs.next()) {
 					Film f = new Film(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
-							rs.getString(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10),
+							rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10),
 							rs.getString(11), castGetter.getActorsByFilmId(filmId));
 					rs.close();
 					conn.close();
@@ -135,7 +135,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			while (rs.next()) {
 				didYouFindAFilm = true;
 				Film f = new Film(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
-						rs.getString(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10),
+						rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getString(10),
 						rs.getString(11), castGetter.getActorsByFilmId(rs.getInt(1)));
 				foundFilms.add(f);
 			}
@@ -150,8 +150,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}
-
-		return null;
 	}
 
 	@Override
@@ -337,7 +335,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}
-		return null;
+
 	}
 
 
