@@ -17,8 +17,9 @@
 	<div class="container">
 
 		<c:choose>
-			<c:when test="${not empty film}">
-				<h2>Film Found!</h2>
+			<c:when test="${not empty films}">
+				<h2>List Of Films:</h2>
+				<c:forEach var="film" items="${films }">
 				<ul>
 					<li>Film ID: ${film.id }</li>
 					<li>Film Title:</li>
@@ -32,63 +33,25 @@
 					<li>Film Rating: ${film.rating }</li>
 					<li>Film Special Features: ${film.special_features }</li>
 				</ul>
+				</c:forEach>
+
 				<br>
 				<h2>Update This Film!</h2>
 				<form action="update.do" name="update">
-				<table>
-					<tr><td>Title</td> <td><input label="Title" type="text" value="${film.title }"></td></tr>
-					<tr><td>Description</td> <td><input label="Description" type="text" value="${film.description }"></td></tr>
-					<tr><td>Release Year</td> <td><input label="Release Year" type="text"
-						value="${film.release_year }"></td></tr> 
-					<tr><td>Language ID</td><td>
-					<input
-						label="Language ID" type="text" value="${film.language_id }">
-						</td></tr>
-					<tr><td>Rental Duration</td> <td><input label="Rental Duration" type="text"
-						value="${film.rental_duration }"></td></tr> 
-					<tr><td>Rental Rate</td><td><input
-						label="Rental Rate" type="text" value="${film.rental_rate }"></td></tr>
-					<tr><td>Replacement Cost</td> <td><input label="Replacement Cost" type="text"
-						value="${film.replacement_cost }"></td></tr> 
-					<tr><td>Rating </td><td>
-					<select name="Rating">
-					<c:if test= "${film.rating=='G'}">
-					<option value="G" selected/>G
-					</c:if>
-					<c:if test = "${film.rating !='G'}">
-					<option value="G"/>G
-					</c:if>
-					<c:if test="${film.rating =='PG'}">
-					<option value="PG" selected/>PG
-					</c:if>
-					<c:if test="${film.rating !='PG'}">
-					<option value="PG"/>PG
-					</c:if>
-					<c:if test="${film.rating =='PG-13'}">
-					<option value="PG-13" selected/>PG-13
-					</c:if>
-					<c:if test="${film.rating !='PG-13'}">
-					<option value="PG-13"/>PG-13
-					</c:if>
-					<c:if test="${film.rating =='R'}">
-					<option value="R" selected/>R
-					</c:if>
-					<c:if test="${film.rating !='R'}">
-					<option value="R"/>R
-					</c:if>
-					<c:if test="${film.rating =='NC-17'}">
-					<option value="NC-17" selected/>NC-17
-					</c:if>
-					<c:if test="${film.rating !='NC-17'}">
-					<option value="NC-17" />NC-17
-					</c:if>
-					</select>
-					</td></tr>
-					<tr><td>Special Features</td> <td><input label="Special Features" type="text"
-						value="${film.special_features }"></td></tr> 
-				</table>
-						<input type="submit" value="UPDATE"><br>
-						
+					<input label="Title" type="text" value="${film.title }"><br>
+					<input label="Description" type="text" value="${film.description }"><br>
+					<input label="Release Year" type="text"
+						value="${film.release_year }"><br> <input
+						label="Language ID" type="text" value="${film.language_id }"><br>
+					<input label="Rental Duration" type="text"
+						value="${film.rental_duration }"><br> <input
+						label="Rental Rate" type="text" value="${film.rental_rate }"><br>
+					<input label="Replacement Cost" type="text"
+						value="${film.replacement_cost }"><br> <input
+						label="Rating" type="text" value="${film.rating }"><br>
+					<input label="Special Features" type="text"
+						value="${film.special_features }"><br> <input
+						type="submit" value="UPDATE"><br>
 				</form>
 				<h2>Delete This Film!</h2>
 			<form action="delete.do" name="delete">
