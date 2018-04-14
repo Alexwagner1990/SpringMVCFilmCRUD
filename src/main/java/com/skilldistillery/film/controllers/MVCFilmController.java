@@ -32,10 +32,10 @@ public class MVCFilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "DeleteFilm.do", params = "delete", method = RequestMethod.POST)
-	public ModelAndView deleteFilm(int film) {
+	@RequestMapping(path = "DeleteFilm.do", params = "id", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(@RequestParam(name="id") int film) {
 		ModelAndView mv = new ModelAndView();
-		Film f = dao.deleteFilm(film);
+		Boolean f = dao.deleteFilm(film);
 		mv.addObject("film", f);		
 		mv.setViewName("WEB-INF/delete.jsp");
 		return mv;
