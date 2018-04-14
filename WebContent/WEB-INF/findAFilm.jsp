@@ -36,34 +36,36 @@
 				<br>
 				<h2>Update This Film!</h2>
 				<form action="UpdateFilm.do" name="update" method="POST">
-				<input type="hidden" value="${film.id }">
+				<input type="hidden" value="${film.id }" name="id">
 				<table>
-					<tr><td>Title</td> <td><input label="Title" type="text" value="${film.title }"></td></tr>
-					<tr><td>Description</td> <td><input label="Description" type="text" value="${film.description }"></td></tr>
+					<tr><td>Title</td> <td><input label="Title" type="text" value="${film.title }" name="title"></td></tr>
+					<tr><td>Description</td> <td><input label="Description" type="text" value="${film.description }" name="description"></td></tr>
 					<tr><td>Release Year</td> <td><input label="Release Year" type="text"
-						value="${film.release_year }"></td></tr> 
+						value="${film.release_year }" name="release_year"></td></tr> 
 					<tr><td>Language ID</td><td>
 					<input label="Language ID" type="text"
-						value="${film.language_id }">
+						value="${film.language_id }" name="language_id">
 						</td></tr>
 					<tr><td>Rental Duration</td> <td><input label="Rental Duration" type="text"
-						value="${film.rental_duration }"></td></tr> 
+						value="${film.rental_duration }" name="rental_duration"></td></tr> 
 					<tr><td>Rental Rate</td><td><input
-						label="Rental Rate" type="text" value="${film.rental_rate }"></td></tr>
+						label="Rental Rate" type="text" value="${film.rental_rate }" name="rental_rate"></td></tr>
+					<tr><td>Length</td><td><input
+						label="Length" type="text" value="${film.length }" name="length"></td></tr>						
 					<tr><td>Replacement Cost</td> <td><input label="Replacement Cost" type="text"
-						value="${film.replacement_cost }"></td></tr> 
+						value="${film.replacement_cost }" name="replacement_cost"></td></tr> 
 					<tr><td>Rating </td><td>
-					<input label="Replacement Cost" type="text"
-						value="${film.rating }">
+					<input label="Rating" type="text"
+						value="${film.rating }" name="rating">
 					</td></tr>
 					<tr><td>Special Features</td> <td><input label="Special Features" type="text"
-						value="${film.special_features }"></td></tr> 
+						value="${film.special_features }" name="special_features"></td></tr> 
 				</table>
 						<input type="submit" value="UPDATE"><br>	
 				</form>
 				<h2>Delete This Film!</h2>
 			<form action="DeleteFilm.do" name="delete" method="POST">
-			<input type="hidden" value="${film.id }">
+			<input type="hidden" value="${film.id }" name="id">
 			<input type="submit" value="DELETE">
 			</form>
 			</c:when>

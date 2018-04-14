@@ -48,6 +48,8 @@
 						value="${film.rental_duration }"><br> 
 					Replacement Rate	<input
 						label="Rental Rate" type="text" value="${film.rental_rate }"><br>
+					Length	<input
+						label="Length" type="text" value="${film.length }"><br>
 					Replacement Cost<input label="Replacement Cost" type="text"
 						value="${film.replacement_cost }"><br> 
 					Rating <input

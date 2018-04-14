@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -230,7 +231,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
 			String sql = "insert into film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) values (?,?,?,?,?,?,?,?,?,?)";
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
 			stmt.setInt(3, film.getRelease_year());
@@ -243,7 +244,8 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt.setString(10, film.getSpecial_features());
 			int success = stmt.executeUpdate();
 			if (success == 1) {
-				String sql2 = "select last_insert_id";
+				//ResultSet rs = stmt.getGeneratedKeys();
+				String sql2 = "select last_insert_id()";
 				PreparedStatement stmt2 = conn.prepareStatement(sql2);
 				ResultSet rs = stmt.executeQuery();
 				film.setId(rs.getInt(1));
@@ -305,7 +307,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
-			String sql = "update film set (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) = (?,?,?,?,?,?,?,?,?,?) where id=?";
+			String sql = "update film set title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? where id=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
@@ -320,11 +322,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt.setInt(11, film.getId());
 			int success = stmt.executeUpdate();
 			if (success == 1) {
-				String sql2 = "select last_insert_id";
-				PreparedStatement stmt2 = conn.prepareStatement(sql2);
-				ResultSet rs = stmt.executeQuery();
-				DatabaseAccessorImpl findFilm = new DatabaseAccessorImpl();
-				Film f = findFilm.getFilmById(rs.getInt(1));
+				Film f = film;
 				conn.commit();
 				conn.close();
 				stmt.close();
@@ -336,7 +334,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				return null;
 			}
 		} 
-		catch (SQLException | ClassNotFoundException e) {
+		catch (SQLException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}

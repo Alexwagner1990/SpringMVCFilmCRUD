@@ -52,6 +52,7 @@ public class MVCFilmController {
 		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.updateFilm(film);
+		System.out.println(f);
 		mv.addObject("film", f);		
 		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
