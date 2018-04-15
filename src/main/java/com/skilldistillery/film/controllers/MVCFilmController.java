@@ -22,9 +22,16 @@ public class MVCFilmController {
 		this.dao = dao;
 	}
 
+	@RequestMapping(path = "AddFilmStarter.do", method = RequestMethod.POST)
+	public ModelAndView addFilmStart() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/addfilm.jsp");
+		return mv;
+	}
+	
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film) {
-//		System.out.println(film);
+		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.addFilm(film);
 		mv.addObject("film", f);

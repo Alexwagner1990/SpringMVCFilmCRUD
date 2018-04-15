@@ -55,8 +55,8 @@
 					Rating <input
 						label="Rating" type="text" value="${film.rating }"><br>
 					Special Features<input label="Special Features" type="text"
-						value="${film.special_features }"><br> <input
-						type="submit" value="UPDATE"><br>
+						value="${film.special_features }"><br> 
+						<input type="submit" value="UPDATE"><br>
 				</form>
 				<h2>Delete This Film!</h2>
 			<form action="DeleteFilm.do" name="delete" method="POST">
