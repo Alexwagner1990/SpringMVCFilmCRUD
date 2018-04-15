@@ -26,7 +26,9 @@ public class MVCFilmController {
 
 	@RequestMapping(path = "AddFilmStarter.do", method = RequestMethod.POST)
 	public ModelAndView addFilmStart() {
+		Film f = new Film();
 		ModelAndView mv = new ModelAndView();
+		mv.addObject(f);
 		mv.setViewName("WEB-INF/addfilm.jsp");
 		return mv;
 	}
