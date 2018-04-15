@@ -33,7 +33,7 @@
 					<li>Film Length: ${film.length }</li>
 					<li>Film Replacement Cost: ${film.replacement_cost }</li>
 					<li>Film Rating: ${film.rating }</li>
-					<li>Film Special Features: ${film.special_features }</li>  					<li><form action="FilmById.do" name= "${film.id}" method="POST">
+					<li>Film Special Features: ${film.special_features }</li>  					
 					<li>Film Cast:
 					<c:forEach var="actor" items="${film.actors }">
 					${actor.firstName} ${actor.lastName}, 
@@ -41,26 +41,28 @@
 				</ul> 
 				<br>
 				<h2>Update This Film!</h2>
-				<form action="UpdateFilm.do" name="update">
-				<input type="hidden" value="${film.id }">
-					Title<input label="Title" type="text" value="${film.title }"><br>
-					Description<input label="Description" type="text" value="${film.description }"><br>
+				<form action="UpdateFilm.do" name="update" method="POST">
+				<input type="hidden" value="${film.id }" name="id">
+				<input type="hidden" value="${film.category }" name="category">
+				<input type="hidden" value="${film.language }" name="Language">
+					Title<input label="Title" type="text" value="${film.title }" name="title"><br>
+					Description<input label="Description" type="text" value="${film.description }" name="description"><br>
 					Release Year<input label="Release Year" type="text"
-						value="${film.release_year }"><br> 
+						value="${film.release_year }" name="release_year"><br> 
 					Language ID<input
-						label="Language ID" type="text" value="${film.language_id }"><br>
+						label="Language ID" type="text" value="${film.language_id }" name="language_id"><br>
 					Rental Duration<input label="Rental Duration" type="text"
-						value="${film.rental_duration }"><br> 
+						value="${film.rental_duration }" name="rental_duration"><br> 
 					Replacement Rate	<input
-						label="Rental Rate" type="text" value="${film.rental_rate }"><br>
+						label="Rental Rate" type="text" value="${film.rental_rate }" name="rental_rate"><br>
 					Length	<input
-						label="Length" type="text" value="${film.length }"><br>
+						label="Length" type="text" value="${film.length }" name="length"><br>
 					Replacement Cost<input label="Replacement Cost" type="text"
-						value="${film.replacement_cost }"><br> 
+						value="${film.replacement_cost }" name="replacement_cost"><br> 
 					Rating <input
-						label="Rating" type="text" value="${film.rating }"><br>
+						label="Rating" type="text" value="${film.rating }" name="rating"><br>
 					Special Features<input label="Special Features" type="text"
-						value="${film.special_features }"><br> 
+						value="${film.special_features }" name="special_features"><br> 
 						<input type="submit" value="UPDATE"><br>
 				</form>
 				<br>
