@@ -68,6 +68,10 @@
 						<input type="submit" value="UPDATE"><br>
 				</form>
 				<br>
+			<form action="FilmById.do" method="POST">
+			<input type="hidden" value="${film.id }" name="filmId">
+			The upper button is getting 400 errors and we're not sure why<input type="submit" value="USE THIS BUTTON TO UPDATE FILM">
+				<br>
 				<h2>Delete This Film!</h2>
 			<form action="DeleteFilm.do" name="delete" method="POST">
 			<input type="hidden" value="${film.id }" name="id">
