@@ -45,24 +45,26 @@
 				<input type="hidden" value="${film.id }" name="id">
 				<input type="hidden" value="${film.category }" name="category">
 				<input type="hidden" value="${film.language }" name="Language">
-					Title<input label="Title" type="text" value="${film.title }" name="title"><br>
-					Description<input label="Description" type="text" value="${film.description }" name="description"><br>
-					Release Year<input label="Release Year" type="text"
-						value="${film.release_year }" name="release_year"><br> 
-					Language ID<input
-						label="Language ID" type="text" value="${film.language_id }" name="language_id"><br>
-					Rental Duration<input label="Rental Duration" type="text"
-						value="${film.rental_duration }" name="rental_duration"><br> 
-					Replacement Rate	<input
-						label="Rental Rate" type="text" value="${film.rental_rate }" name="rental_rate"><br>
-					Length	<input
-						label="Length" type="text" value="${film.length }" name="length"><br>
-					Replacement Cost<input label="Replacement Cost" type="text"
-						value="${film.replacement_cost }" name="replacement_cost"><br> 
-					Rating <input
-						label="Rating" type="text" value="${film.rating }" name="rating"><br>
-					Special Features<input label="Special Features" type="text"
-						value="${film.special_features }" name="special_features"><br> 
+				<table>
+					<tr><td>Title</td><td><input label="Title" type="text" value="${film.title }" name="title"></td></tr>
+					<tr><td>Description</td><td><input label="Description" type="text" value="${film.description }" name="description"></td></tr>
+					<tr><td>Release Year</td><td><input label="Release Year" type="text"
+						value="${film.release_year }" name="release_year"></td></tr> 
+					<tr><td>Language ID</td><td><input
+						label="Language ID" type="text" value="${film.language_id }" name="language_id"></td></tr>
+					<tr><td>Rental Duration</td><td><input label="Rental Duration" type="text"
+						value="${film.rental_duration }" name="rental_duration"></td></tr> 
+					<tr><td>Replacement Rate</td><td><input
+						label="Rental Rate" type="text" value="${film.rental_rate }" name="rental_rate"></td><tr>
+					<tr><td>Length</td><td><input
+						label="Length" type="text" value="${film.length }" name="length"></td></tr>
+					<tr><td>Replacement Cost</td><td><input label="Replacement Cost" type="text"
+						value="${film.replacement_cost }" name="replacement_cost"></td></tr> 
+					<tr><td>Rating</td><td><input
+						label="Rating" type="text" value="${film.rating }" name="rating"></td></tr>
+					<tr><td>Special Features</td><td><input label="Special Features" type="text"
+						value="${film.special_features }" name="special_features"></td></tr>
+				</table> 
 						<input type="submit" value="UPDATE"><br>
 				</form>
 				<br>
