@@ -68,7 +68,7 @@
 				<br>
 				<h2>Delete This Film!</h2>
 			<form action="DeleteFilm.do" name="delete" method="POST">
-			<input type="hidden" value="${film.id }">
+			<input type="hidden" value="${film.id }" name="id">
 			<input type="submit" value="DELETE">
 			</form>
 				<br><p>****************************************************</p>
