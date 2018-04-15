@@ -23,15 +23,20 @@
 				<ul>
 					<li>Film ID: ${film.id }</li>
 					<li>Film Title: ${film.title }</li>
+					<li>Film Category: ${film.category.categoryName}</li>
 					<li>Film Description: ${film.description }</li>
 					<li>Film Release Year: ${film.release_year }</li>
-					<li>Film Language ID: ${film.language_id }</li>
+					<li>Film Language (ID): ${film.language.language_name} (${film.language_id })</li>
 					<li>Film Rental Duration: ${film.rental_duration }</li>
 					<li>Film Rental Rate: ${film.rental_rate }</li>
 					<li>Film Length: ${film.length }</li>
 					<li>Film Replacement Cost: ${film.replacement_cost }</li>
 					<li>Film Rating: ${film.rating }</li>
 					<li>Film Special Features: ${film.special_features }</li>
+					<li>Film Cast:
+					<c:forEach var="actor" items="${film.actors }">
+					${actor.firstName} ${actor.lastName}, 
+					</c:forEach></li>
 				</ul>
 				<br>
 				<h2>Update This Film!</h2>

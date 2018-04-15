@@ -20,21 +20,26 @@
 			<c:when test="${not empty films}">
 				<h2>List Of Films:</h2>
 				<c:forEach var="film" items="${films }">
+				<h2>Film Facts:</h2>
 				<ul>
 					<li>Film ID: ${film.id }</li>
-					<li>Film Title:</li>
+					<li>Film Title:${film.title }</li>
+					<li>Film Category: ${film.category.categoryName}</li>
 					<li>Film Description: ${film.description }</li>
 					<li>Film Release Year: ${film.release_year }</li>
-					<li>Film Language ID: ${film.language_id }</li>
+					<li>Film Language (ID): ${film.language.language_name} (${film.language_id })</li>
 					<li>Film Rental Duration: ${film.rental_duration }</li>
 					<li>Film Rental Rate: ${film.rental_rate }</li>
 					<li>Film Length: ${film.length }</li>
 					<li>Film Replacement Cost: ${film.replacement_cost }</li>
 					<li>Film Rating: ${film.rating }</li>
 					<li>Film Special Features: ${film.special_features }</li>  					<li><form action="FilmById.do" name= "${film.id}" method="POST">
-<!-- 					<li><input type="submit" value="More Details And Actions"/>
-					</form></li> -->
+					<li>Film Cast:
+					<c:forEach var="actor" items="${film.actors }">
+					${actor.firstName} ${actor.lastName}, 
+					</c:forEach></li>
 				</ul> 
+				<br>
 				<h2>Update This Film!</h2>
 				<form action="UpdateFilm.do" name="update">
 				<input type="hidden" value="${film.id }">
@@ -58,11 +63,13 @@
 						value="${film.special_features }"><br> 
 						<input type="submit" value="UPDATE"><br>
 				</form>
+				<br>
 				<h2>Delete This Film!</h2>
 			<form action="DeleteFilm.do" name="delete" method="POST">
 			<input type="hidden" value="${film.id }">
 			<input type="submit" value="DELETE">
 			</form>
+				<br><p>****************************************************</p>
 				</c:forEach>
 
 				<br>

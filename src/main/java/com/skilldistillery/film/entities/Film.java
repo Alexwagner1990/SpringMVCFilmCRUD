@@ -2,6 +2,7 @@ package com.skilldistillery.film.entities;
 
 import java.util.List;
 
+
 public class Film {
 	private int id;
 	private String title;
@@ -15,6 +16,24 @@ public class Film {
 	private String rating;
 	private String special_features;
 	private List<Actor> actors;
+	private Language language;
+	private FilmCategory category;
+
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	public FilmCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(FilmCategory category) {
+		this.category = category;
+	}
 
 	public Film() {
 

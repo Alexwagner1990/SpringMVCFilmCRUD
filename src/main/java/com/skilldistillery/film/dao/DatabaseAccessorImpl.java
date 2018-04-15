@@ -12,6 +12,7 @@ import java.util.List;
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 import com.skilldistillery.film.entities.FilmCategory;
+import com.skilldistillery.film.entities.Language;
 
 
 public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
@@ -41,7 +42,8 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 					Film f = new Film(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
 							rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getString(10),
 							rs.getString(11), castGetter.getActorsByFilmId(filmId));
-					
+					f.setCategory(castGetter.getFilmCategory(f));
+					f.setLanguage(castGetter.getLanguageName(f));
 					rs.close();
 					conn.close();
 					stmt.close();
@@ -144,6 +146,8 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				Film f = new Film(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
 						rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getString(10),
 						rs.getString(11), castGetter.getActorsByFilmId(rs.getInt(1)));
+				f.setCategory(castGetter.getFilmCategory(f));
+				f.setLanguage(castGetter.getLanguageName(f));
 				foundFilms.add(f);
 			}
 			if (!didYouFindAFilm) {
@@ -160,12 +164,12 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 	}
 
 	@Override
-	public Film getFilmWithLanguageName(Film filmWithoutLanguage) {
+	public Language getLanguageName(Film filmWithoutLanguage) {
 		if (filmWithoutLanguage == null) {
 			return null;
 		}
 		int languageId = filmWithoutLanguage.getLanguage_id();
-		
+		Language languageFromId = new Language();
 		ResultSet rs;
 		Connection conn;
 		PreparedStatement stmt;
@@ -177,10 +181,11 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				String languageName = rs.getString(2);
+				languageFromId.setLanguage_name(languageName);
 				rs.close();
 				conn.close();
 				stmt.close();
-				return filmWithoutLanguage;
+				return languageFromId;
 			} else {
 				conn.close();
 				stmt.close();
@@ -318,11 +323,14 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt.setInt(11, film.getId());
 			int success = stmt.executeUpdate();
 			if (success == 1) {
-				Film f = film;
+				DatabaseAccessorImpl dbl = new DatabaseAccessorImpl();
+				film.setCategory(dbl.getFilmCategory(film));
+				film.setLanguage(dbl.getLanguageName(film));
+				film.setActors(dbl.getActorsByFilmId(film.getId()));
 				conn.commit();
 				conn.close();
 				stmt.close();
-				return f;
+				return film;
 			} else {
 				conn.commit();
 				conn.close();
@@ -330,7 +338,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				return null;
 			}
 		} 
-		catch (SQLException e) {
+		catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Database problem. Dunno what to tell ya.");
 			return null;
 		}

@@ -3,7 +3,7 @@ package com.skilldistillery.film.entities;
 public class Language {
 	
 	private int id;
-	private String name;
+	private String language_name;
 	
 	
 	public Language() {
@@ -13,19 +13,24 @@ public class Language {
 	public Language(int id, String name) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.language_name = name;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+
+	public String getLanguage_name() {
+		return language_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setLanguage_name(String language_name) {
+		this.language_name = language_name;
 	}
+	
 	
 }
