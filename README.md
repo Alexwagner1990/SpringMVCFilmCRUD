@@ -30,14 +30,12 @@ Over the past two weeks we have seen each individual parts work independently, f
 or controllers map to ModelAndView objects pages, but before this project we hadn't seen how those interact together and
 affect the flow of the whole app.  
 
+Close attention needs to be paid to default values in forms passing a command object. Lots of time was used up banging our heads against a 400 error wall because of values passed from a form to the controller, which expected a command object. It is much safer to assign default values to parameters in a form - putting a null value in what a command objects expects to be a primitive caused lots of problems this project.
+
+Extra commits and extra git pulls/pushes were extremely helpful. We ran into lots of issues this project, but we basically avoided any merge conflicts by pushing/pulling early and often. I think we have several git commits where only 2 lines of code change, but that extra few seconds of pulling/pushing probably saved us a lot of headache in dealing with potential merge conflicts. For this project we had 99 problems but merge conflicts weren't one.
+
 ### Regrets/Things we could've done better
-After many, many hours of banging our heads the screen, we could not figure out how to get the add film to work. Kept 
-getting a 400 error message and looked all over multiple hours over two days and couldn't come up with a solution to make
-the code work. We didn't think it was a mapping problem, because it would detect a discrepancy if the POST OR GET methods
-didn't match. The name parameter didn't seem to be the issue, because when we did have that issue, we would get a message 
-saying that the passed parameters didn't match the expected input - our addFilm message was not very detailed to help find 
-the issue. We didn't think it was an issue with connecting with the database because it would have failed before it got to 
-that point.
+We spent a TON of time trying to get the Add Film function to work, only to find that the issue had to do with a mismatch between default values passed by the form vs default values the command object was expecting. We've learned a lot about how the command object works and what it expects, but the time it took to solve that problem unfortunately ate away at time that could have been used to optimize the project functionality - for instance, we would have loved to use validators for the add film section, but we just ran out of time.
 
 We had an issue getting a film to update when trying to update after searching for a film with a keyword, which brings up
 multiple films found. We implemented a work-around to go from the findMulitpleFilms.jsp to the findById method in the controller

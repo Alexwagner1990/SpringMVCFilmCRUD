@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.dao.DatabaseAccessorInterface;
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 import com.skilldistillery.film.entities.FilmCategory;
 import com.skilldistillery.film.entities.Language;
@@ -24,6 +25,15 @@ public class MVCFilmController {
 		this.dao = dao;
 	}
 
+	@RequestMapping(path = "addActor.do", method = RequestMethod.POST)
+	public ModelAndView addActor(Actor actor) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/addactor.jsp");
+		Actor a = dao.addActor(actor);
+		mv.addObject("actor", a);
+		return mv;
+	}
+	
 	@RequestMapping(path = "AddFilmStarter.do", method = RequestMethod.POST)
 	public ModelAndView addFilmStart() {
 		Film f = new Film();
@@ -35,11 +45,11 @@ public class MVCFilmController {
 	
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film) {
-		System.out.println(film);
+//		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.addFilm(film);
 		mv.addObject("film", f);
-		mv.setViewName("WEB-INF/findAFilm.jsp");
+		mv.setViewName("WEB-INF/filmAdded.jsp");
 		return mv;
 	}
 
@@ -55,11 +65,7 @@ public class MVCFilmController {
 	public ModelAndView getFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.getFilmById(filmId);
-//		FilmCategory c = dao.getFilmCategory(f);
-//		Language l = dao.getLanguageName(f);
 		mv.addObject("film", f);
-//		mv.addObject("language", l);
-//		mv.addObject("category", c);
 		mv.setViewName("WEB-INF/findAFilm.jsp");
 		return mv;
 	}
@@ -81,4 +87,34 @@ public class MVCFilmController {
 		mv.setViewName("WEB-INF/findMultipleFilms.jsp"); 
 		return mv;
 	}
+	
+	@RequestMapping(path = "ActorById.do", params = "actorId", method = RequestMethod.POST)
+	public ModelAndView getActorById(int actorId) {
+		ModelAndView mv = new ModelAndView();
+		Actor a = dao.getActorById(actorId);
+		List<Film> filmlist = dao.getActorFilms(actorId);
+		mv.addObject("actor", a);
+		mv.addObject("filmlist", filmlist);
+		mv.setViewName("WEB-INF/findAnActor.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "UpdateActor.do", method = RequestMethod.POST)
+	public ModelAndView updateActor(Actor actor) {
+		ModelAndView mv = new ModelAndView();
+		Actor a = dao.updateActor(actor);
+		mv.addObject("actor", a);		
+		mv.setViewName("WEB-INF/updateActor.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "DeleteActor.do", params = "id", method = RequestMethod.POST)
+	public ModelAndView deleteActor(@RequestParam(name="id") int id) {
+		ModelAndView mv = new ModelAndView();
+		Boolean f = dao.deleteFilm(id);
+		mv.addObject("actor", f);		
+		mv.setViewName("WEB-INF/deleteActor.jsp");
+		return mv;
+	}
 }
+	

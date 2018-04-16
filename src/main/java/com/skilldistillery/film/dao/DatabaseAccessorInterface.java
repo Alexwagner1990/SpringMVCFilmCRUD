@@ -17,4 +17,9 @@ public interface DatabaseAccessorInterface {
 	  public Film addFilm(Film film);
 	  public boolean deleteFilm(int film);
 	  public Film updateFilm(Film film);
+	  public Actor addActor(Actor actor);
+	  public Actor updateActor(Actor actor);
+	  public boolean deleteActor(int actorId);
+	  public List<Film> getActorFilms(int actorId);
+	
 }
