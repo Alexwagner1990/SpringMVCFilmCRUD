@@ -48,8 +48,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				stmt.close();
 				return f;
 			} else {
-				// System.out.println("Film not found, try a different ID or don't I'm not your
-				// dad");
 				rs.close();
 				conn.close();
 				stmt.close();
@@ -93,9 +91,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 
 	@Override
 	public Actor addActor(Actor actor) {
-		// System.out.println(actor);
-		// System.out.println(actor.getFirstName());
-		// System.out.println(actor.getLastName());
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			String sql = "insert into actor (first_name, last_name) values (?,?) ";
@@ -109,7 +104,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 				ResultSet rs = stmt2.executeQuery(sql2);
 				if (rs.next()) {
 					actor.setId(rs.getInt(1));
-					System.out.println("There");
 					conn.close();
 					stmt.close();
 					return actor;
@@ -266,7 +260,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 
 	@Override
 	public Film addFilm(Film film) {
-		System.out.println(film);
 		Connection conn;
 		PreparedStatement stmt;
 		try {
@@ -286,29 +279,24 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			 stmt.setString(9, film.getRating());
 			 stmt.setString(10, film.getSpecial_features());
 			int success = stmt.executeUpdate();
-			System.out.println("FirstAddSuccess");
 			if (success == 1) {
 				// ResultSet rs = stmt.getGeneratedKeys();
 				String sql2 = "select last_insert_id()";
 				PreparedStatement stmt2 = conn.prepareStatement(sql2);
 				ResultSet rs2 = stmt2.executeQuery();
-				System.out.println("SecondQuerySuccess");
 				int filmid=0;
 				if(rs2.next()) {
 				filmid = rs2.getInt(1);
-				System.out.println(filmid);
 				film.setId(filmid);
 				 conn.commit();
 				conn.close();
 				stmt.close();
 				return film;
 				}
-				// conn.commit();
 				conn.close();
 				stmt.close();
 				return null;
 			} else {
-				// conn.commit();
 				conn.close();
 				stmt.close();
 				return null;
@@ -404,7 +392,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt.setInt(3, actor.getId());
 			int success = stmt.executeUpdate();
 			if (success == 1) {
-				// DatabaseAccessorImpl dbl = new DatabaseAccessorImpl();
 				conn.commit();
 				conn.close();
 				stmt.close();
@@ -423,7 +410,6 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 
 	@Override
 	public boolean deleteActor(int actorId) {
-		// System.out.println(actorId);
 		Connection conn;
 		PreparedStatement stmt;
 		try {
@@ -434,11 +420,7 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, actorId);
 			int success = stmt.executeUpdate();
-			// if (success !=0) {
-			// conn.commit();
-			// return true;
-			// }
-			// return false;
+
 			if (success != 0) {
 				String sql2 = "delete from actor where id=?";
 				PreparedStatement stmt2 = conn.prepareStatement(sql2);
@@ -461,9 +443,8 @@ public class DatabaseAccessorImpl implements DatabaseAccessorInterface {
 			return false;
 		}
 	}
-
+	@Override
 	public List<Film> getActorFilms(int actorId) {
-		System.out.println(actorId);
 		Connection conn;
 		PreparedStatement stmt;
 		List<Film> filmIdList = new ArrayList<>();

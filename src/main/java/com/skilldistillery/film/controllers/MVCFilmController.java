@@ -45,7 +45,6 @@ public class MVCFilmController {
 	
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film) {
-//		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.addFilm(film);
 		mv.addObject("film", f);
@@ -71,10 +70,8 @@ public class MVCFilmController {
 	}
 	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(Film film) {
-//		System.out.println(film);
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.updateFilm(film);
-//		System.out.println(f);
 		mv.addObject("film", f);		
 		mv.setViewName("WEB-INF/update.jsp");
 		return mv;
